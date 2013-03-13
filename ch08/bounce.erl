@@ -1,8 +1,8 @@
 -module (bounce).
--export ([report/0]).
+-export ([report/1]).
 
-report() ->
+report(Count) ->
 	receive
-		X -> io:format("Received ~p~n", [X]),
-		report()
+		X -> io:format("Received #~p: ~p~n", [Count,X]),
+		report(Count+1)
 	end.
