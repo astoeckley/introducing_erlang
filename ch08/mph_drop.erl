@@ -2,7 +2,7 @@
 -export ([mph_drop/0]).
 
 mph_drop() ->
-	Drop=spawn(drop, drop, []),
+	Drop=spawn_link(drop, drop, []),
 	convert(Drop).
 	
 convert(Drop) ->
