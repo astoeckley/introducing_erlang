@@ -11,8 +11,9 @@ convert(Drop) ->
 		{Planemo, Distance} ->
 			Drop ! { self(), Planemo, Distance },
 			convert(Drop);
-		{'EXIT', Pid, Reason} ->
-			io:format("FAILURE: ~p died because of ~p.~n", [Pid, Reason]);
+		{'EXIT', _Pid, _Reason} ->
+			NewDrop=spawn_link(drop,drop,[]),
+			convert(NewDrop);
 		{Planemo, Distance, Velocity} ->
 			MphVelocity = 2.23693629 * Velocity,
 			io:format("On ~p, a fall of ~p meters yields a velocity of ~p mph.~n", [Planemo, Distance, MphVelocity]),
