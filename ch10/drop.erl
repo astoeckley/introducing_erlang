@@ -14,7 +14,7 @@ handle_drops() ->
 	end.
 	
 fall_velocity(Planemo, Distance) when Distance >= 0 ->
-	P = hd(ers:lookup(planemos, Planemo)),
+	P = hd(ets:lookup(planemos, Planemo)),
 	math:sqrt(2 * P#planemo.gravity * Distance).
 	
 setup() ->
